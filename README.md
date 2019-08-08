@@ -1,3 +1,3 @@
 # docker-auvlib-ipython-opencv
-`docker run -it --rm --mount type=bind,source=/home/yipingxie/meaningful_z/auvlib,target=/.local/auvlib  yipingx/auvlib:v2
+`docker image for opencv-3.3.1, python2.7, ipython==5.0, auvlib
 `
