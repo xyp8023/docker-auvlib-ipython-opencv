@@ -12,11 +12,11 @@ RUN mkdir -p opencv-3.3.1/biuld
 WORKDIR opencv-3.3.1/build
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr/local -DOPENCV_EXTRA_MODULES_PATH=../../opencv_contrib-3.3.1/modules -DOPENCV_ENABLE_NONFREE=True .. && make -j4 && make install
 WORKDIR /
-RUN git clone https://github.com/nilsbore/auvlib.git
+RUN git clone https://github.com/nilsbore/auvlib.git && mkdir -p data
 WORKDIR auvlib
 RUN git submodule update --init && mkdir -p build 
 WORKDIR build
-RUN  cmake -DCMAKE_INSTALL_PREFIX=../install .. || exit 0 && make -j4 && make install 
+RUN  cmake -DCMAKE_INSTALL_PREFIX=../install .. && make -j4 && make install 
 RUN echo "export PYTHONPATH=$PYTHONPATH:/auvlib/install/lib" >> ~/.bashrc && /bin/bash -c "source ~/.bashrc" && rm /opencv-3.3.1.zip /opencv_contrib-3.3.1.zip && rm -rf /var/lib/apt/lists/*
 
 
